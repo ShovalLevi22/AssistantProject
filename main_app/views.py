@@ -28,12 +28,9 @@ def do_action_view(request, action):
         return HttpResponseRedirect(reverse('main_app:home'))
 
     except:
-        # else:
-        # upload_file(request)
         return HttpResponseRedirect(reverse('main_app:upload'))
 
 def activate_action(command):
-    # TODO run function from 'commands' dir
 
     func = getattr(commands, command.name)
     func()
@@ -52,7 +49,6 @@ def upload_file_view(request):
 
 
 def add_action(file, name):
-    # target = open("name.txt", "a+")
     save_path = 'main_app/commands/'
     completeName = os.path.join(save_path, name + ".py")
 
@@ -65,20 +61,3 @@ def add_action(file, name):
 
     c = Command(name=name)
     c.save()
-    # TODO check add to DB
-
-
-
-
-
-
-# class UploadView(FormView):
-#     form_class = UploadFileForm
-#     template_name = 'upload.html'
-#     success_url = '/thanks/'
-#
-#     def form_valid(self, form):
-#         # add_action(request.FILES['file'])
-#         print('valid')
-#         # return HttpResponseRedirect('/success/url/')
-#         return super().form_valid(form)

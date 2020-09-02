@@ -6,7 +6,6 @@ app_name = 'main_app'
 urlpatterns = [
     path('upload/', views.upload_file_view, name='upload'),
     path('', views.CommandListView.as_view(), name='home'),
-    # path('upload/', views.UploadView.as_view(), name='upload'),
     path('<str:action>/', views.do_action_view, name='command'),
 
 

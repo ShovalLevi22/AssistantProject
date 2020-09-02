@@ -10,7 +10,7 @@
     {% for command in object_list %}
         <li><a href="{% url 'main_app:command' action=command.name   %}">{{ command.name }}</a></li>
     {% empty %}
-        <li>No articles yet.</li>
+        <li>No commands yet.</li>
     {% endfor %}
     </ul>
 
