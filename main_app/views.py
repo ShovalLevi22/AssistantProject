@@ -31,9 +31,11 @@ def do_action_view(request, action):
         return HttpResponseRedirect(reverse('main_app:upload'))
 
 def activate_action(command):
-
-    func = getattr(commands, command.name)
-    func()
+    try:
+        func = getattr(commands, command.name)
+        func()
+    except Exception as e:
+        print(e.args)
 
 
 def upload_file_view(request):
