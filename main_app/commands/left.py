@@ -1,0 +1,3 @@
+
+def left():
+    print('left')
