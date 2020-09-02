@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Commands</h1>
+    <ul>
+    {% for command in object_list %}
+        <li><a href="{% url 'main_app:command' action=command.name   %}">{{ command.name }}</a></li>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>
