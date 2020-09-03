@@ -31,7 +31,7 @@ def do_action_view(request, action):
 
 def activate_action(command):
     try:
-        exec(open(f'commands/{command}.py').read())
+        exec(open(f'main_app/commands/{command}.py').read())
     except Exception as e:
         print(e.args)
 
@@ -56,8 +56,8 @@ def add_action(file, name):
         for chunk in file.chunks():
             destination.write(chunk)
 
-    with open('main_app/commands/__init__.py','a') as imports:
-        imports.write(f'\nfrom .{name} import {name}')
+    # with open('main_app/commands/__init__.py','a') as imports:
+    #     imports.write(f'\nfrom .{name} import {name}')
 
     c = Command(name=name)
     c.save()
