@@ -31,7 +31,7 @@ def do_action_view(request, action):
 
 def activate_action(command):
     try:
-        exec(open(f'/commands/{command}.py').read())
+        exec(open(f'commands/{command}.py').read())
     except Exception as e:
         print(e.args)
 
