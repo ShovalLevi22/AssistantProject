@@ -1,13 +1,13 @@
+import os
+import os.path
+from django.urls import reverse
+from django.utils import timezone
+from .forms import UploadFileForm
 from django.shortcuts import render
 from main_app.models import Command
-from .forms import UploadFileForm
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import FormView
-from django.urls import reverse
-import os.path
-from main_app import commands
 from django.views.generic.list import ListView
-from django.utils import timezone
 
 # Create your views here.
 
@@ -32,8 +32,7 @@ def do_action_view(request, action):
 
 def activate_action(command):
     try:
-        func = getattr(commands, command.name)
-        func()
+        exec(open(f'{os.getcwd()}/main_app/commands/{command}.py').read())
     except Exception as e:
         print(e.args)
 
@@ -58,8 +57,8 @@ def add_action(file, name):
         for chunk in file.chunks():
             destination.write(chunk)
 
-    with open('main_app/commands/__init__.py','a') as imports:
-        imports.write(f'\nfrom .{name} import {name}')
+    # with open('main_app/commands/__init__.py','a') as imports:
+    #     imports.write(f'\nfrom .{name} import {name}')
 
     c = Command(name=name)
     c.save()
